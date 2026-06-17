@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <style>
-            .wd {
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Play Tic Tac Toe</title>
+  <style>
+    
+    a.play{display:inline-block;padding:16px 22px;background:#0369a1;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;border:2px solid rgba(0,0,0,0.06)}
+    a.other{margin-left:12px;font-size:14px;color:#0369a1}
+    .wd {
                 width: 20px;
                 border: 2px solid black;
                 padding: 40px;
@@ -12,12 +18,11 @@
             .container {
                 display: flex;
             }
-        </style>
-    </head>
+  </style>
+</head>
+<body>
 
-    <body>
-
-        <div class="container">
+    <div class="container">
             <div class="wd"></div>
             <div class="wd"></div>
             <div class="wd"></div>
@@ -32,8 +37,9 @@
             <div class="wd"></div>
             <div class="wd"></div>
         </div>
-
-    </body>
+  <div>
+    <a class="play" href="tictactoe.html">Click to play Tic Tac Toe</a>
+    <a class="other" href="game/game.html">(modular version)</a>
+  </div>
+</body>
 </html>
-
-
