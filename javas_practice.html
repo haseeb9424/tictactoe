@@ -1,9 +1,224 @@
-<html>
-    <head>
-        <title>JavaScript Practice</title>
-    </head>
-    <body>
-        <h1>JavaScript Practice</h1>
-        <p>Welcome to the JavaScript practice page!</p>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice</title>
+    <style>
+        /* Modern Reset & Global Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-color: #f8f9fa;
+            --surface-color: #ffffff;
+            --text-color: #212529;
+            --text-muted: #6c757d;
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header & Navigation Styles */
+        header {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav display: flex;
+        nav gap: 1.5rem;
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* App Layout Main Grid */
+        .layout-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            flex: 1;
+        }
+
+        /* Sidebar styling for tracking sub-tasks */
+        sidebar {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        sidebar h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .practice-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .practice-list a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .practice-list a:hover {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+        }
+
+        /* Main Content Styling */
+        main {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Placeholder Area for your interactive script features */
+        .workspace-card {
+            border: 2px dashed var(--border-color);
+            border-radius: 6px;
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-muted);
+            background-color: var(--bg-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        /* Responsive Breakpoint for Mobile Screens */
+        @media (max-width: 768px) {
+            .layout-container {
+                grid-template-columns: 1fr;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">JS.Playground</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="tictactoe.html">Tic Tac Toe</a>
+                <a href="javas_practice.html" class="active">JavaScript Practice</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- App Shell Layout -->
+    <div class="layout-container">
+        
+        <!-- Left Column: Practice Exercises Navigation -->
+        <sidebar>
+            <h3>Exercises Matrix</h3>
+            <ul class="practice-list">
+                <li><a href="#variables">1. Variables & Data Types</a></li>
+                <li><a href="#dom">2. DOM Manipulation</a></li>
+                <li><a href="#events">3. Event Listeners</a></li>
+                <li><a href="#api">4. Fetching API Data</a></li>
+            </ul>
+        </sidebar>
+
+        <!-- Right Column: Active Interactive Area -->
+        <main>
+            <h1>JavaScript Practice</h1>
+            <p class="subtitle">Welcome to the interactive JavaScript learning environment.</p>
+            
+            <!-- This is where your code output logic or practice UI cards will live -->
+            <div class="workspace-card">
+                <p>Select an exercise from the menu or insert your training functions/buttons right here inside this workspace layout card.</p>
+            </div>
+        </main>
+        
+    </div>
+
+    <!-- Global Footer -->
+    <footer>
+        <p>&copy; 2026 Developer Playground. Built for logic testing.</p>
+    </footer>
+
+</body>
 </html>
