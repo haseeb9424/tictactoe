@@ -31,47 +31,27 @@
   </div>
 
   <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
-  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAeNomAQVoMmq8B5w8nNtp7VKyB-fq7AhY",
-    authDomain: "javasc-a3533.firebaseapp.com",
-    projectId: "javasc-a3533",
-    storageBucket: "javasc-a3533.firebasestorage.app",
-    messagingSenderId: "940473685238",
-    appId: "1:940473685238:web:2b2db91a9bcfc6b9ea88d7",
-    measurementId: "G-HZD4J9E0FP"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyAeNomAQVoMmq8B5w8nNtp7VKyB-fq7AhY",
+  authDomain: "javasc-a3533.firebaseapp.com",
+  projectId: "javasc-a3533",
+  storageBucket: "javasc-a3533.firebasestorage.app",
+  messagingSenderId: "940473685238",
+  appId: "1:940473685238:web:2b2db91a9bcfc6b9ea88d7",
+  measurementId: "G-HZD4J9E0FP"
+};
 
- // 2. Initialize Firebase
- const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // 3. Test the connection by writing a test document
-  async function testFirebaseConnection() {
-    console.log("Attempting to connect to Firebase...");
-    try {
-      // Tries to create a collection called "test" and insert a timestamp document
-      await setDoc(doc(db, "connection_tests", "status"), {
-        connectedAt: new Date(),
-        message: "Hello from my local code playground!"
-      });
-      
-      console.log("✅ Firebase Connection Successful! Data written to the cloud.");
-    } catch (error) {
-      console.error("❌ Firebase Connection Failed: ", error.message);
-    }
-  }
-
-  // Run the test function immediately when the page loads
-  testFirebaseConnection();
+try {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    console.log("🚀 Success! Firestore service is available and ready.");
+} catch (error) {
+    console.error("Initialization check crashed:", error);
+}
+ 
 </script>
 
 </body>
