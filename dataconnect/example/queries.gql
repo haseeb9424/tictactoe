@@ -1,0 +1,140 @@
+mutation CreateCustomer @auth(level: USER) {
+  customer_insert(data: {
+    id_expr: "auth.uid",
+    email: "user@example.com",
+    fullName: "User Name"
+  })
+}
+
+mutation UpdateCustomer @auth(level: USER) {
+  customer_update(key: {id_expr: "auth.uid"}, data: {fullName: "New Name"})
+}
+
+mutation DeleteCustomer @auth(level: USER) {
+  customer_delete(key: {id_expr: "auth.uid"})
+}
+
+query GetCustomer @auth(level: USER) {
+  customer(key: {id_expr: "auth.uid"}) {
+    email
+    fullName
+  }
+}
+
+query ListCustomers @auth(level: USER) {
+  customers {
+    fullName
+  }
+}
+
+mutation CreateMenuCategory @auth(level: PUBLIC, insecureReason: "Menu categories are public information for customers.") {
+  menuCategory_insert(data: {name: "Appetizers", displayOrder: 1})
+}
+
+mutation UpdateMenuCategory @auth(level: PUBLIC, insecureReason: "Menu categories are public information.") {
+  menuCategory_update(id: "00000000-0000-0000-0000-000000000000", data: {description: "Updated"})
+}
+
+mutation DeleteMenuCategory @auth(level: PUBLIC, insecureReason: "Menu categories are public information.") {
+  menuCategory_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetMenuCategory @auth(level: PUBLIC, insecureReason: "Menu categories are public information.") {
+  menuCategory(id: "00000000-0000-0000-0000-000000000000") {
+    name
+  }
+}
+
+query ListMenuCategories @auth(level: PUBLIC, insecureReason: "Menu categories are public information.") {
+  menuCategories {
+    name
+  }
+}
+
+mutation CreateMenuItem @auth(level: PUBLIC, insecureReason: "Menu items are public information.") {
+  menuItem_insert(data: {name: "Burger", price: 10.99, isAvailable: true})
+}
+
+mutation UpdateMenuItem @auth(level: PUBLIC, insecureReason: "Menu items are public information.") {
+  menuItem_update(id: "00000000-0000-0000-0000-000000000000", data: {price: 12.99})
+}
+
+mutation DeleteMenuItem @auth(level: PUBLIC, insecureReason: "Menu items are public information.") {
+  menuItem_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetMenuItem @auth(level: PUBLIC, insecureReason: "Menu items are public information.") {
+  menuItem(id: "00000000-0000-0000-0000-000000000000") {
+    name
+    price
+  }
+}
+
+query ListMenuItems @auth(level: PUBLIC, insecureReason: "Menu items are public information.") {
+  menuItems {
+    name
+    price
+  }
+}
+
+mutation CreateOrder @auth(level: USER) {
+  order_insert(data: {
+    status: "pending",
+    totalAmount: 20.0,
+    orderType: "delivery",
+    customer: {id_expr: "auth.uid"}
+  })
+}
+
+mutation UpdateOrder @auth(level: USER) {
+  order_update(id: "00000000-0000-0000-0000-000000000000", data: {status: "delivered"})
+}
+
+mutation DeleteOrder @auth(level: USER) {
+  order_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetOrder @auth(level: USER) {
+  order(id: "00000000-0000-0000-0000-000000000000") {
+    status
+    totalAmount
+  }
+}
+
+query ListMyOrders @auth(level: USER) {
+  orders(where: {customer: {id: {eq_expr: "auth.uid"}}}) {
+    status
+    totalAmount
+  }
+}
+
+mutation CreateOrderItem @auth(level: USER) {
+  orderItem_insert(data: {
+    quantity: 1,
+    priceAtPurchase: 10.99,
+    order: {id: "00000000-0000-0000-0000-000000000000"},
+    menuItem: {id: "00000000-0000-0000-0000-000000000000"}
+  })
+}
+
+mutation UpdateOrderItem @auth(level: USER) {
+  orderItem_update(id: "00000000-0000-0000-0000-000000000000", data: {quantity: 2})
+}
+
+mutation DeleteOrderItem @auth(level: USER) {
+  orderItem_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetOrderItem @auth(level: USER) {
+  orderItem(id: "00000000-0000-0000-0000-000000000000") {
+    quantity
+    priceAtPurchase
+  }
+}
+
+query ListOrderItems @auth(level: USER) {
+  orderItems {
+    quantity
+    menuItem { name }
+  }
+}

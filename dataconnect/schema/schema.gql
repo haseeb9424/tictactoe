@@ -1,0 +1,38 @@
+type MenuCategory @table {
+  name: String!
+  description: String
+  displayOrder: Int
+}
+
+type MenuItem @table {
+  name: String!
+  price: Float!
+  isAvailable: Boolean!
+  description: String
+  imageUrl: String
+  category: MenuCategory
+}
+
+type Customer @table {
+  email: String!
+  fullName: String!
+  phoneNumber: String
+  defaultAddress: String
+}
+
+type Order @table {
+  status: String!
+  totalAmount: Float!
+  orderType: String!
+  deliveryAddress: String
+  createdAt: Timestamp
+  customer: Customer
+}
+
+type OrderItem @table {
+  quantity: Int!
+  priceAtPurchase: Float!
+  specialInstructions: String
+  order: Order
+  menuItem: MenuItem
+}

@@ -1,0 +1,97 @@
+mutation SeedDatabase @transaction {
+  customer_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      email: "alice@example.com",
+      fullName: "Alice Smith",
+      phoneNumber: "555-0101"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440001",
+      email: "bob@example.com",
+      fullName: "Bob Jones",
+      phoneNumber: "555-0102"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440002",
+      email: "charlie@example.com",
+      fullName: "Charlie Brown",
+      phoneNumber: "555-0103"
+    }
+  ])
+  menuCategory_insertMany(data: [
+    {
+      id: "a1a1a1a1-a1a1-4a1a-a1a1-a1a1a1a1a1a1",
+      name: "Appetizers",
+      description: "Starters to begin your meal",
+      displayOrder: 1
+    },
+    {
+      id: "a1a1a1a1-a1a1-4a1a-a1a1-a1a1a1a1a1a2",
+      name: "Main Courses",
+      description: "Hearty entrees",
+      displayOrder: 2
+    },
+    {
+      id: "a1a1a1a1-a1a1-4a1a-a1a1-a1a1a1a1a1a3",
+      name: "Desserts",
+      description: "Sweet treats",
+      displayOrder: 3
+    }
+  ])
+  menuItem_insertMany(data: [
+    {
+      id: "b2b2b2b2-b2b2-4b2b-b2b2-b2b2b2b2b2b1",
+      name: "Garlic Bread",
+      price: 5.99,
+      isAvailable: true,
+      categoryId: "a1a1a1a1-a1a1-4a1a-a1a1-a1a1a1a1a1a1"
+    },
+    {
+      id: "b2b2b2b2-b2b2-4b2b-b2b2-b2b2b2b2b2b2",
+      name: "Steak Frites",
+      price: 24.50,
+      isAvailable: true,
+      categoryId: "a1a1a1a1-a1a1-4a1a-a1a1-a1a1a1a1a1a2"
+    },
+    {
+      id: "b2b2b2b2-b2b2-4b2b-b2b2-b2b2b2b2b2b3",
+      name: "Chocolate Lava Cake",
+      price: 8.00,
+      isAvailable: true,
+      categoryId: "a1a1a1a1-a1a1-4a1a-a1a1-a1a1a1a1a1a3"
+    }
+  ])
+  order_insertMany(data: [
+    {
+      id: "c3c3c3c3-c3c3-4c3c-c3c3-c3c3c3c3c3c1",
+      status: "COMPLETED",
+      totalAmount: 30.49,
+      orderType: "DINE_IN",
+      customerId: "550e8400-e29b-41d4-a716-446655440000"
+    },
+    {
+      id: "c3c3c3c3-c3c3-4c3c-c3c3-c3c3c3c3c3c2",
+      status: "PENDING",
+      totalAmount: 24.50,
+      orderType: "TAKEOUT",
+      customerId: "550e8400-e29b-41d4-a716-446655440001"
+    }
+  ])
+  orderItem_insertMany(data: [
+    {
+      id: "d4d4d4d4-d4d4-4d4d-d4d4-d4d4d4d4d4d1",
+      quantity: 1,
+      priceAtPurchase: 5.99,
+      menuItemId: "b2b2b2b2-b2b2-4b2b-b2b2-b2b2b2b2b2b1",
+      orderId: "c3c3c3c3-c3c3-4c3c-c3c3-c3c3c3c3c3c1"
+    },
+    {
+      id: "d4d4d4d4-d4d4-4d4d-d4d4-d4d4d4d4d4d2",
+      quantity: 1,
+      priceAtPurchase: 24.50,
+      menuItemId: "b2b2b2b2-b2b2-4b2b-b2b2-b2b2b2b2b2b2",
+      orderId: "c3c3c3c3-c3c3-4c3c-c3c3-c3c3c3c3c3c1"
+    }
+  ])
+}
